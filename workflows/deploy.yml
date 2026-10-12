@@ -1,6 +1,3 @@
-### Copy and paste this YAML code into your `.github/workflows/deploy.yml` file:
-
-```yaml
 name: Deploy Portfolio
 
 on:
