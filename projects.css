@@ -1,0 +1,104 @@
+.featured-card {
+  border: 1px solid rgba(184, 134, 11, 0.45) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.08);
+}
+
+.featured-tag {
+  color: #92400e !important;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.projects-page {
+  animation: fadeIn 0.4s ease-in-out;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(216, 180, 248, 0.5); /* Pastel purple tint */
+  border-radius: 0.75rem;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(147, 112, 219, 0.05);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: #b8860b; /* Gold accent hover */
+  box-shadow: 0 12px 30px rgba(184, 134, 11, 0.12);
+  transform: translateY(-2px);
+}
+
+.project-tag {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: #00858F;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.project-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1a202c; /* Legal ink */
+  margin-bottom: 0.75rem;
+}
+
+.project-card p {
+  color: #4a5568;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.project-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #b8860b; /* Rich gold link */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: #00858F;
+}
+
+.back-nav-btn {
+  background: transparent;
+  border: none;
+  color: #b8860b;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.back-nav-btn:hover {
+  color: #00858F;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

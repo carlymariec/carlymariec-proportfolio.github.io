@@ -1,0 +1,97 @@
+.bento-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85); /* Light glassmorphism */
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.navibar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navibar-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a202c; /* Deep legal ink */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navibar-logo span {
+  color: #b8860b; /* Rich gold accent */
+}
+
+.badge-inline-wrap {
+  transform: scale(0.35);
+  transform-origin: left center;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+}
+
+.navibar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navibar-links button {
+  background: transparent;
+  border: none;
+  color: #4a5568; /* Readable dark slate */
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navibar-links button:hover {
+  color: #00858F; /* Deep turquoise accent */
+}
+
+.navibar-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.navibar-toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #1a202c; /* Dark ink toggle bars */
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navibar-toggle {
+    display: flex;
+  }
+  .navibar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: none;
+  }
+  .navibar-links.open {
+    display: flex;
+  }
+}
