@@ -1,0 +1,40 @@
+.bento-background-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #fbfbfd; /* Warm off-white canvas */
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(140px);
+  opacity: 0.35; /* Soft glow on light background */
+}
+
+.purple-orb {
+  top: -10%;
+  left: -10%;
+  width: 550px;
+  height: 550px;
+  background-color: #d8b4f8; /* Light Pastel Purple */
+}
+
+.turquoise-orb {
+  bottom: -10%;
+  right: -10%;
+  width: 550px;
+  height: 550px;
+  background-color: #00c4cc; /* Turquoise */
+}
+
+.gold-orb {
+  top: 40%;
+  left: 30%;
+  width: 450px;
+  height: 450px;
+  background-color: #f59e0b; /* Rich Golden Yellow */
+  opacity: 0.2;
+}
