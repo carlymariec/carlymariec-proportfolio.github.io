@@ -1,0 +1,95 @@
+/* ==========================================================================
+   DEAN'S LIST BADGE & CERTIFICATE ARTIFACT (LEGAL TECH LIGHT THEME)
+   ========================================================================== */
+
+.deans-list-badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.35rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(180, 128, 8, 0.35);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(180, 128, 8, 0.1);
+  transition: all 0.3s ease;
+  font-family: "Latin Modern Roman", "Computer Modern", "EB Garamond", "Lora", serif;
+}
+
+.deans-list-badge-container:hover {
+  transform: translateY(-2px);
+  border-color: rgba(180, 128, 8, 0.6);
+  box-shadow: 0 12px 30px rgba(180, 128, 8, 0.18);
+}
+
+/* Round Seal Image Container */
+.deans-badge-image-frame {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid rgba(180, 128, 8, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.deans-badge-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Meta Typography */
+.deans-badge-meta-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.deans-badge-title {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b48008; /* Legal gold accent */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.deans-badge-gpa {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #1e1e24; /* Crisp dark ink */
+  margin-top: 0.15rem;
+  line-height: 1.2;
+}
+
+.deans-badge-school {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #008b91; /* Legal teal accent */
+  margin-top: 0.1rem;
+}
+
+.deans-badge-term {
+  font-size: 0.85rem;
+  color: #4a5568;
+  margin-top: 0.05rem;
+}
+
+/* Responsive Mobile Layout */
+@media (max-width: 768px) {
+  .artifact-showcase-wrapper {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .deans-list-badge-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
