@@ -1,0 +1,40 @@
+/* ==========================================================================
+   GLOBAL LEGAL TECH LIGHT THEME & APP CONTAINER
+   ========================================================================== */
+
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0e15; /* Cosmic dark background to anchor the Galaxy canvas */
+  color: #1e1e24;
+  font-family: "Latin Modern Roman", "Computer Modern", "EB Garamond", "Lora", serif;
+  overflow-x: hidden;
+}
+
+.bento-app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.bento-main-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.bento-footer {
+  text-align: center;
+  padding: 2rem;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4rem;
+}
