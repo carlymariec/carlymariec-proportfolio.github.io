@@ -2,16 +2,14 @@ import React from 'react';
 import './home.css';
 import About from './about';
 import Features from './features';
-import Contact from '../components/sections/contact';
-import SpinningBadge from '../components/spinningBadge';
-import { WordRotate } from '../components/wordrotate';
-import { writingSamples } from '../projects';
-import NeonGradientCard from '../components/magicui/neon-gradient-card';
+import Contact from './contact';
 import DeansListBadge from '../components/deanslistbadge';
+import { WordRotate } from '../components/word-rotate';
+import { writingSamples } from '../projects';
+import NeonGradientCard from '../components/neon-gradient-card';
 
 // Asset references using Vite's robust bundling
-const resumePdf = new URL('../assets/resume/resume.pdf', import.meta.url).href;
-const certificateImg = new URL('../assets/certificates/IMG_1554.jpeg', import.meta.url).href;
+const certificateImg = new URL('../../assets/certificates/IMG_1554.jpeg', import.meta.url).href;
 
 export default function Home() {
   const scrollToSection = (id) => {
@@ -30,7 +28,7 @@ export default function Home() {
   return (
     <div className="home-bento-wrapper">
       <div className="floating-badge-container">
-        <SpinningBadge />
+        <DeansListBadge />
       </div>
 
       {/* 1. Hero Section */}
@@ -95,14 +93,8 @@ export default function Home() {
           </div>
 
           <div className="resume-action-row" style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem' }}>
-            <a 
-              href={resumePdf} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bento-primary-btn" 
-              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}
-            >
-              Download PDF Resume 📥
+            <a href="#contact" className="bento-primary-btn">
+              Request Full Resume
             </a>
           </div>
 

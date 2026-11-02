@@ -1,40 +1,107 @@
-/* ==========================================================================
-   GLOBAL LEGAL TECH LIGHT THEME & APP CONTAINER
-   ========================================================================== */
-
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
-html,
+:root {
+  --paper: #f8f6f1;
+  --ink: #211a2d;
+  --muted: #625a6c;
+  --purple: #4c1d95;
+  --pastel: #c4b5fd;
+  --gold: #d4af37;
+  --turquoise: #0f9f9a;
+  --glass: rgba(255, 253, 248, 0.72);
+  --line: rgba(76, 29, 149, 0.18);
+  --shadow: 0 24px 70px rgba(48, 25, 78, 0.14);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  padding: 0;
-  background-color: #0d0e15; /* Cosmic dark background to anchor the Galaxy canvas */
-  color: #1e1e24;
-  font-family: "Latin Modern Roman", "Computer Modern", "EB Garamond", "Lora", serif;
+  min-width: 320px;
   overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(196, 181, 253, 0.26), transparent 30rem),
+    radial-gradient(circle at 88% 82%, rgba(20, 184, 166, 0.14), transparent 28rem),
+    var(--paper);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-.bento-app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
+h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; }
+a, button, input, textarea { font: inherit; }
+::selection { background: rgba(212, 175, 55, 0.35); }
 
-.bento-main-content {
-  flex: 1;
-  position: relative;
-  z-index: 1;
+.galaxy-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.72;
+  pointer-events: auto;
 }
-
+.bento-app-container { min-height: 100vh; position: relative; }
+.bento-main-content, .bento-footer { position: relative; z-index: 1; }
+.bento-card-base, .neon-gradient-card-content {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.bento-card-base {
+  padding: clamp(1.35rem, 4vw, 2.75rem);
+  transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+  transform-style: preserve-3d;
+}
+.bento-card-base:hover {
+  border-color: rgba(15, 159, 154, 0.42);
+  box-shadow: 0 30px 80px rgba(48, 25, 78, 0.2);
+  transform: translateY(-5px) rotateX(0.6deg);
+}
 .bento-footer {
+  margin-top: 2rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
   text-align: center;
-  padding: 2rem;
-  font-family: monospace;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 4rem;
+  font-size: 0.82rem;
+}
+.section-title { margin: 0 0 .45rem; color: var(--ink); font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.section-title span { color: var(--purple); }
+.section-subtitle { margin: 0 0 1.5rem; color: var(--muted); }
+.section-divider {
+  width: 5rem; height: .25rem; margin-bottom: 2rem; border-radius: 99px;
+  background: linear-gradient(90deg, var(--gold), var(--turquoise), var(--purple));
+}
+.btn, .bento-primary-btn, .bento-gold-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 2.8rem; padding: .7rem 1.15rem; border-radius: .8rem;
+  text-decoration: none; font-weight: 700; cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+.btn:hover, .bento-primary-btn:hover, .bento-gold-btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
+.bento-primary-btn, .btn-primary {
+  color: #fff; border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--purple), #6d28d9);
+  box-shadow: 0 10px 24px rgba(76, 29, 149, .25);
+}
+.bento-gold-btn {
+  color: #3b2b05; border: 1px solid rgba(212, 175, 55, .55);
+  background: rgba(255, 250, 229, .72);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, .16);
+}
+.form-group { margin-bottom: 1.1rem; }
+.form-group label { display: block; margin-bottom: .35rem; color: var(--ink); font-weight: 700; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: .75rem;
+  background: rgba(255, 255, 255, .62); color: var(--ink); outline: none;
+}
+.form-group textarea { min-height: 9rem; resize: vertical; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--turquoise); box-shadow: 0 0 0 3px rgba(15, 159, 154, .14); }
+@media (max-width: 640px) {
+  .floating-badge-container { display: none; }
+  .hero-btn-row { flex-direction: column; align-items: stretch; }
 }
