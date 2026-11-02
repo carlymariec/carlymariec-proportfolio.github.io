@@ -1,5 +1,5 @@
 import React from 'react';
-import badgeImg from '../assets/badges/IMG_1548.png';
+import badgeImg from '../../assets/badges/IMG_1548.png';
 import './deanslistbadge.css';
 
 export default function DeansListBadge() {
