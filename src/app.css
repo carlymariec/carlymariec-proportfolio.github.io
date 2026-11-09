@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
+/* ==========================================================================\n   1. GLOBAL CSS VARIABLES & COLOR PALETTE\n   ========================================================================== */
 :root {
   --paper: #f8f6f1;
   --ink: #211a2d;
@@ -8,42 +9,93 @@
   --purple: #4c1d95;
   --pastel: #c4b5fd;
   --gold: #d4af37;
-  --turquoise: #0f9f9a;
-  --glass: rgba(255, 253, 248, 0.72);
+  --gold-warm: #e5a93b;
+  --turquoise: #008b91;
+  --glass: rgba(255, 253, 248, 0.82);
+  --glass-hover: rgba(255, 255, 255, 0.94);
   --line: rgba(76, 29, 149, 0.18);
-  --shadow: 0 24px 70px rgba(48, 25, 78, 0.14);
+  --line-hover: rgba(0, 139, 145, 0.45);
+  --shadow: 0 24px 70px rgba(48, 25, 78, 0.12);
+  --shadow-hover: 0 30px 85px rgba(0, 139, 145, 0.18);
+  
+  /* Font Stacks */
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Latin Modern Roman", "Computer Modern", "EB Garamond", "Lora", "Playfair Display", Georgia, serif;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* ==========================================================================\n   2. BASE & TYPOGRAPHY RESETS\n   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 12% 8%, rgba(196, 181, 253, 0.26), transparent 30rem),
-    radial-gradient(circle at 88% 82%, rgba(20, 184, 166, 0.14), transparent 28rem),
-    var(--paper);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(196, 181, 253, 0.22), transparent 32rem),
+    radial-gradient(circle at 88% 82%, rgba(0, 139, 145, 0.12), transparent 30rem),
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08), transparent 36rem);
   color: var(--ink);
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-serif);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* OpenType Ligatures & Precision Kerning */
+  font-feature-settings: "liga" 1, "clig" 1, "dlig" 1, "kern" 1;
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; }
-a, button, input, textarea { font: inherit; }
-::selection { background: rgba(212, 175, 55, 0.35); }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--ink);
+  letter-spacing: -0.015em;
+}
 
-.galaxy-background {
+a, button, input, textarea, select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: var(--ink);
+}
+
+/* ==========================================================================\n   3. LAYOUT & Z-INDEX CANVAS CONTAINER STYLING\n   ========================================================================== */
+.bento-app-container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.particles-background-wrapper {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 0;
-  opacity: 0.72;
-  pointer-events: auto;
+  pointer-events: none;
+  overflow: hidden;
 }
-.bento-app-container { min-height: 100vh; position: relative; }
-.bento-main-content, .bento-footer { position: relative; z-index: 1; }
-.bento-card-base, .neon-gradient-card-content {
+
+.bento-main-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* ==========================================================================\n   4. BENTO CARDS & GLASSMORPHISM SURFACES\n   ========================================================================== */
+.bento-card-base, 
+.neon-gradient-card-content {
   background: var(--glass);
   border: 1px solid var(--line);
   border-radius: 1.5rem;
@@ -51,57 +103,211 @@ a, button, input, textarea { font: inherit; }
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
+
 .bento-card-base {
   padding: clamp(1.35rem, 4vw, 2.75rem);
-  transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 280ms ease,
+              background 280ms ease;
   transform-style: preserve-3d;
 }
+
 .bento-card-base:hover {
-  border-color: rgba(15, 159, 154, 0.42);
-  box-shadow: 0 30px 80px rgba(48, 25, 78, 0.2);
-  transform: translateY(-5px) rotateX(0.6deg);
+  background: var(--glass-hover);
+  border-color: var(--line-hover);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
 }
-.bento-footer {
-  margin-top: 2rem;
-  padding: 2rem 1rem;
-  border-top: 1px solid var(--line);
+
+/* ==========================================================================\n   5. SECTION TITLES & DECORATIVE DIVIDERS\n   ========================================================================== */
+.section-title {
+  margin: 0 0 0.45rem;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+}
+
+.section-title span {
+  color: var(--purple);
+}
+
+.section-subtitle {
+  margin: 0 0 1.5rem;
   color: var(--muted);
-  text-align: center;
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
-.section-title { margin: 0 0 .45rem; color: var(--ink); font-size: clamp(1.8rem, 4vw, 2.6rem); }
-.section-title span { color: var(--purple); }
-.section-subtitle { margin: 0 0 1.5rem; color: var(--muted); }
+
 .section-divider {
-  width: 5rem; height: .25rem; margin-bottom: 2rem; border-radius: 99px;
+  width: 5.5rem;
+  height: 0.28rem;
+  margin-bottom: 2rem;
+  border-radius: 99px;
   background: linear-gradient(90deg, var(--gold), var(--turquoise), var(--purple));
 }
-.btn, .bento-primary-btn, .bento-gold-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 2.8rem; padding: .7rem 1.15rem; border-radius: .8rem;
-  text-decoration: none; font-weight: 700; cursor: pointer;
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+
+.bento-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  background: rgba(0, 139, 145, 0.1);
+  color: var(--turquoise);
+  border: 1px solid rgba(0, 139, 145, 0.35);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
-.btn:hover, .bento-primary-btn:hover, .bento-gold-btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
-.bento-primary-btn, .btn-primary {
-  color: #fff; border: 1px solid transparent;
-  background: linear-gradient(135deg, var(--purple), #6d28d9);
-  box-shadow: 0 10px 24px rgba(76, 29, 149, .25);
+
+.tag-gold {
+  background: rgba(212, 175, 55, 0.12);
+  color: #92400e;
+  border-color: rgba(212, 175, 55, 0.45);
 }
+
+.tag-purple {
+  background: rgba(76, 29, 149, 0.1);
+  color: var(--purple);
+  border-color: rgba(76, 29, 149, 0.35);
+}
+
+/* ==========================================================================\n   6. BUTTONS & INTERACTIVE ACTION STYLES\n   ========================================================================== */
+.btn, 
+.bento-primary-btn, 
+.bento-gold-btn,
+.btn-gold-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 180ms ease, 
+              filter 180ms ease;
+}
+
+.btn:hover, 
+.bento-primary-btn:hover, 
+.bento-gold-btn:hover,
+.btn-gold-sm:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.bento-primary-btn, 
+.btn-primary {
+  color: #ffffff;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--purple) 0%, #6d28d9 100%);
+  box-shadow: 0 10px 24px rgba(76, 29, 149, 0.25);
+}
+
 .bento-gold-btn {
-  color: #3b2b05; border: 1px solid rgba(212, 175, 55, .55);
-  background: rgba(255, 250, 229, .72);
-  box-shadow: 0 10px 24px rgba(212, 175, 55, .16);
+  color: #3b2b05;
+  border: 1px solid rgba(212, 175, 55, 0.65);
+  background: rgba(255, 250, 229, 0.85);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.18);
 }
-.form-group { margin-bottom: 1.1rem; }
-.form-group label { display: block; margin-bottom: .35rem; color: var(--ink); font-weight: 700; }
-.form-group input, .form-group textarea {
-  width: 100%; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: .75rem;
-  background: rgba(255, 255, 255, .62); color: var(--ink); outline: none;
+
+.btn-gold-sm {
+  min-height: 2.2rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  color: #92400e;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  background: #ffffff;
 }
-.form-group textarea { min-height: 9rem; resize: vertical; }
-.form-group input:focus, .form-group textarea:focus { border-color: var(--turquoise); box-shadow: 0 0 0 3px rgba(15, 159, 154, .14); }
-@media (max-width: 640px) {
-  .floating-badge-container { display: none; }
-  .hero-btn-row { flex-direction: column; align-items: stretch; }
+
+/* ==========================================================================\n   7. FORM CONTROLS & SELECTION INPUTS\n   ========================================================================== */
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-group input, 
+.form-group textarea,
+.form-select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.form-group textarea {
+  min-height: 8.5rem;
+  resize: vertical;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus,
+.form-select:focus {
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 3px rgba(0, 139, 145, 0.16);
+}
+
+.form-success-message {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--turquoise);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================\n   8. FOOTER STYLING\n   ========================================================================== */
+.bento-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 3rem;
+  padding: 2.2rem 1rem;
+  border-top: 1px solid var(--line);
+  background: rgba(251, 251, 253, 0.9);
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+}
+
+/* ==========================================================================\n   9. RESPONSIVE BREAKPOINTS\n   ========================================================================== */
+@media (max-width: 768px) {
+  .bento-card-base {
+    padding: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
