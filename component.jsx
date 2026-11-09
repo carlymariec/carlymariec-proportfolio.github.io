@@ -2,7 +2,7 @@ import React from 'react';
 import './component.css';
 import { motion } from 'framer-motion';
 
-export default function SpinningBadge({ text = "• LEGAL TECH • PARALEGAL • AUTOMATION •" }) {
+export default function SpinningBadge({ text = "• LEGAL TECH • DOCUMENT PERFECTION • SPATIAL OCR • AUTOMATION •" }) {
   return (
     <div className="spinning-badge-wrapper">
       <div className="badge-glass-orb" />
